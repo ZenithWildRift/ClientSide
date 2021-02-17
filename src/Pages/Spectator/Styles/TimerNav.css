@@ -1,0 +1,44 @@
+#timer_nav {
+  width: 100%;
+  padding: 10px 0px;
+}
+
+#timer_central {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer_section {
+  display: flex;
+}
+
+.ban_characters {
+  width: 40px;
+  height: 40px;
+  background-color: #505380;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+}
+
+.nav_team_name {
+  height: 40px;
+  width: 300px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team_A {
+  background-color: #FE005E;
+}
+.team_B {
+  background-color: #00A1FE;
+}
