@@ -1,18 +1,60 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import GrayBox from '../../Shared/GrayBox';
+import { socket } from '../../Auth/helper';
 import CharacterPanel from './CharacterPanel';
 import "./Styles/Spectator.css";
 import TimerNav from './TimerNav';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 
 const Spectator = () => {
+  const [match, setMatch] = useState();
+  const { id, teamId} = useParams();
+
+  const checkCompleted = () => {
+    let checkBanned = (match.bannedCharaters.teamA.length === 3) && (match.bannedCharaters.teamB.length === 3);
+    let checkSelected = (match.selectedCharacters.teamA.length === 5) && (match.selectedCharacters.teamB.length === 5);
+    if(checkBanned === true && checkSelected === true) {
+      return true;
+    }
+  }
+
+  useEffect(() => {
+    axios.get(`/match/${id}`)
+    .then(response => {
+      setMatch(response.data.match);
+    });
+  }, []);
+  
+  useEffect(()=> {
+    socket.emit("join", {match_id: id, team_id : teamId});
+
+    socket.on("checkUpdate", match => setMatch(match));
+
+    return () => {
+      socket.off("checkUpdate", match => setMatch(match))
+   };
+  }, []);
+
   return ( 
-    <Fragment>
-      <TimerNav />
+    <Container>
+      <TimerNav
+        completed={match && checkCompleted}
+        match={match}
+        bannedCharacters={match?.bannedCharaters}
+      />
       
       {/* Spectator Page Main Section */}
 
       <main className="spectator_main">
-        <CharacterPanel position="left" />
+        <CharacterPanel characters={match?.selectedCharacters?.teamA} position="left"/>
 
         <div className="spectator_centre">
           
@@ -35,10 +77,10 @@ const Spectator = () => {
 
         </div>
 
-        <CharacterPanel position="right" />
+        <CharacterPanel characters={match?.selectedCharacters?.teamB} position="right" />
       </main>
       {/* Spectator Page Main Section */}
-    </Fragment>
+    </Container>
    );
 }
 
