@@ -9,9 +9,9 @@ export const setHeader = (token) => {
 };
 
 export const init = () => {
-  const baseURL = 'https://zenithwildrift.herokuapp.com/api';
+  // const baseURL = 'https://zenithwildrift.herokuapp.com/api';
   // const baseURL = 'http://localhost:5000/api';
-  // const baseURL = 'http://api.zenithleagues.com/api';
+  const baseURL = 'http://api.zenithleagues.com/api';
   axios.defaults.baseURL = baseURL;
   // setHeader(token());
   // response();
