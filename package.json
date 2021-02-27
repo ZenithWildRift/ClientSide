@@ -1,6 +1,6 @@
 {
   "name": "projectesports",
-  "homepage": "http://zenithleagues.com/",
+  "homepage": "https://zenithleagues.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -45,5 +45,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "config.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.24.2"
+  }
 }
