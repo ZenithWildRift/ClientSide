@@ -39,12 +39,14 @@ const Character = styled.div`
   background-color: #505380;
   margin: 10px 10px;
 
-  background: url(${props => props.imageUrl});
-  background-size: cover;
-  background-position: center;
+
+
   border-radius: 5px;
 
-
+  ${(props) => {
+    if (props.imageUrl && props.imageUrl !== '') return `background: url(${props.imageUrl});`
+  }}
+  
   ${props => {
     if(props.team === "A") {
       return "box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.5);"
@@ -52,6 +54,9 @@ const Character = styled.div`
       return "box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.5);"
     }
   }}
+
+  background-size: cover;
+  background-position: center;
 
 `;
 

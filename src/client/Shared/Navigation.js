@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React from 'react';
-import {Link, withRouter} from "react-router-dom"; 
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { isAuthenticated } from '../Auth/helper';
 import NavButton from './NavButton';
 
 const Nav = styled.nav`
@@ -18,23 +20,42 @@ const Logo = styled.h1`
   font-weight: 700;
 `;
 
-const logout = () => {
-  //
-}
+const Navigation = ({ history }) => {
+  const loggedIn = isAuthenticated();
 
-const Navigation = ({history}) => {
-  return ( 
-      <Nav>
-        <div>
-          <Logo>Zenith WildRift</Logo>
-        </div>
-        <div>
+  const logout = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('jwt');
+
+      axios.get('/user/signout')
+        .then(() => {
+          console.log('Signout success');
+          history.push('/login');
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
+  return (
+    <Nav>
+      <div>
+        <Logo>Zenith WildRift</Logo>
+      </div>
+      <div>
+        {!loggedIn && (
+        <>
           <NavButton onClick={() => history.push('/signup')}>Signup</NavButton>
           <NavButton onClick={() => history.push('/login')}>Login</NavButton>
-          <NavButton onClick={() => logout()}>Logout</NavButton>
-        </div>
-      </Nav>
-   );
-}
- 
+        </>
+        )}
+        {loggedIn && (
+        <NavButton onClick={() => logout()}>Logout</NavButton>
+        )}
+      </div>
+
+
+    </Nav>
+  );
+};
+
 export default withRouter(Navigation);

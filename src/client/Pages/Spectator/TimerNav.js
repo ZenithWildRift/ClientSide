@@ -78,9 +78,9 @@ const TimerNav = ({match, bannedCharacters, completed}) => {
         {/* Timer */}
         <section className="timer_section">
 
-          <TeamName team="A" turn={match?.turn} completed={completed}>{`Team ${match?.teamA?.name}`}</TeamName>
+          <TeamName team="B" turn={match?.turn} completed={completed}>{`Team ${match?.teamA?.name}`}</TeamName>
           <BannedCharacters noBg={true} >V/S</BannedCharacters>
-          <TeamName team="B" turn={match?.turn} completed={completed}>{`Team ${match?.teamB?.name}`}</TeamName>
+          <TeamName team="A" turn={match?.turn} completed={completed}>{`Team ${match?.teamB?.name}`}</TeamName>
 
         </section>
         {/* Timer */}

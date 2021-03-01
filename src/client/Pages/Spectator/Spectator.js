@@ -66,13 +66,17 @@ const Spectator = () => {
 
           {/* Team Roaster */}
           <section className="roaster_section">
-            <div className="team_roaster"></div>
+            <div className="team_roaster">
+              <img src="https://cdn.discordapp.com/attachments/813809372614361088/815649766733512724/Tribe_Logo.png" alt="" />
+            </div>
             <GrayBox>VS</GrayBox>
-            <div className="team_roaster"></div>
+            <div className="team_roaster">
+              <img src="https://cdn.discordapp.com/attachments/813809372614361088/815648311176069120/image0.png" alt="" />
+            </div>
           </section>
 
           <div className="organisation_logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="" />
+            <img src="https://cdn.discordapp.com/attachments/813809372614361088/815643342418870272/image1.png" alt="" />
           </div>
 
         </div>

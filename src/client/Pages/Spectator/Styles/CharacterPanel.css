@@ -18,10 +18,10 @@
 }
 
 .sidepanel_left {
-  background-color: rgb(254,0,94,0.9);
+  background-color: #00A1FE;
 }
 .sidepanel_right {
-  background-color: #00A1FE;
+  background-color: rgb(254,0,94,0.9);
 }
 
 .character_image {

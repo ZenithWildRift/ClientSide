@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react';
+import axios from 'axios';
+import React, { Fragment, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { authenticate } from '../../Auth/helper';
 import Navigation from '../../Shared/Navigation';
 
 const LoginFormContainer = styled.div`
@@ -27,28 +30,73 @@ const Input = styled.input`
 `;
 
 const Login = () => {
-  return ( 
+  const [state, setState] = useState({
+    username: '',
+    password: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+
+  const handleChange = name => (e) => {
+    e.preventDefault();
+    setState({ ...state, [name]: e.target.value });
+  };
+
+  const handleLogin = () => {
+    setLoading(true);
+    axios.post('/user/signin', state)
+      .then((response) => {
+        if (response.data.error) {
+          return console.log(response.data);
+        }
+        authenticate(response.data, () => {
+          setRedirect(true);
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const performRedirect = () => {
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+  };
+
+  return (
     <Fragment>
       <Navigation />
-      
-      <LoginFormContainer>
-        <FormItem>ID<Input /></FormItem>
-        <FormItem>Password<Input /></FormItem>
 
-        <button style={{
-          border: "2px solid #232434",
-          borderRadius: "5px",
-          padding: "8px 15px",
-          marginTop: '30px',
-          width: '100%',
-          cursor: 'pointer'
-      }}>Login</button>
+      <LoginFormContainer>
+        <FormItem>
+          Username
+          <Input onChange={handleChange('username')} value={state.username} />
+        </FormItem>
+        <FormItem>
+          Password
+          <Input onChange={handleChange('password')} value={state.password} />
+        </FormItem>
+
+        <button
+          type="button"
+          style={{
+            border: '2px solid #232434',
+            borderRadius: '5px',
+            padding: '8px 15px',
+            marginTop: '30px',
+            width: '100%',
+            cursor: 'pointer'
+          }}
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          Login
+        </button>
 
       </LoginFormContainer>
 
-
+      {performRedirect()}
     </Fragment>
-   );
-}
- 
+  );
+};
+
 export default Login;

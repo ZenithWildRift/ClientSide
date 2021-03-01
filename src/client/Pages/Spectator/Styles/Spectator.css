@@ -32,9 +32,16 @@
 
 .team_roaster {
   width: 100%;
-  height: 100px;
-  background-color: #505380;
+  height: auto;
+  /* background-color: #505380; */
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.team_roaster > img {
+  width: 40%;
+  margin: 0 auto;
 }
 
 .organisation_logo > img {

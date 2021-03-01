@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-const SOCKET_URL = 'http://localhost:5000';
+
+const SOCKET_URL = 'https://zenithwildrift.herokuapp.com';
 
 export const socket = io(SOCKET_URL);
 
@@ -10,3 +11,21 @@ export const checkCompleted = (match) => {
     return true;
   }
 }
+
+export const authenticate = (data, next) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('jwt', JSON.stringify(data));
+    next();
+  }
+}
+
+export const isAuthenticated = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  if (localStorage.getItem('jwt')) {
+    return JSON.parse(localStorage.getItem('jwt'));
+  }
+  return false;
+};
+

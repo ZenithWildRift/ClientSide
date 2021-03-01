@@ -2,12 +2,11 @@ import { Backdrop, Button, CircularProgress, Dialog, DialogActions, DialogConten
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import BodyContainer from '../../Shared/BodyContainer';
-import Navigation from '../../Shared/Navigation';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LinkIcon from '@material-ui/icons/Link';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-import { Label } from '@material-ui/icons';
+import Navigation from '../../Shared/Navigation';
+import BodyContainer from '../../Shared/BodyContainer';
 
 const styles = {
   tooltip: {
@@ -184,11 +183,11 @@ const Dashboard = () => {
           <DialogTitle id="form-dialog-title">View Links</DialogTitle>
           <DialogContent>
             <LinkTitle>TEAM-A</LinkTitle>
-            <LinkBlock><code>{`http://localhost:3000/match/${selectedId}/team/00`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/team/00`}</code></LinkBlock>
             <LinkTitle>TEAM-B</LinkTitle>
-            <LinkBlock><code>{`http://localhost:3000/match/${selectedId}/team/11`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/team/11`}</code></LinkBlock>
             <LinkTitle>Spectator</LinkTitle>
-            <LinkBlock><code>{`http://localhost:3000/match/${selectedId}/spectator`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/spectator`}</code></LinkBlock>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setToggle({ ...toggle, links: false})} color="primary">
