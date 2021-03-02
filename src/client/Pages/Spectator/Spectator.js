@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import styled from 'styled-components';
 import GrayBox from '../../Shared/GrayBox';
 import { socket } from '../../Auth/helper';
 import CharacterPanel from './CharacterPanel';
-import "./Styles/Spectator.css";
+import './Styles/Spectator.css';
 import TimerNav from './TimerNav';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
@@ -24,7 +24,7 @@ const Spectator = () => {
     if(checkBanned === true && checkSelected === true) {
       return true;
     }
-  }
+  };
 
   useEffect(() => {
     axios.get(`/match/${id}`)
@@ -35,22 +35,22 @@ const Spectator = () => {
 
   if (match) {
     if (match.ready) {
-      console.log("bheja")
+      console.log('bheja');
       socket.emit('start_timer');
     }
   }
 
   useEffect(() => {
-    socket.emit("join", {match_id: id, team_id : teamId});
+    socket.emit('join', {match_id: id, team_id : teamId});
 
-    socket.on("checkUpdate", match => setMatch(match));
+    socket.on('checkUpdate', match => setMatch(match));
 
-    socket.on('timer_count', data => {
-      console.log(data)
-    })
+    socket.on('timer_count', (data) => {
+      console.log(data);
+    });
 
     return () => {
-      socket.off("checkUpdate", match => setMatch(match))
+      socket.off('checkUpdate', match => setMatch(match));
     };
   }, []);
 
@@ -71,8 +71,8 @@ const Spectator = () => {
           
           {/* Timer */}
           <div className="spectator_centre_timer">
-            <h3>TIME</h3>
-            <h4>25 seconds</h4>
+            {/* <h3>TIME</h3>
+            <h4>25 seconds</h4> */}
           </div>
 
           {/* Team Roaster */}
@@ -97,7 +97,7 @@ const Spectator = () => {
       {/* Spectator Page Main Section */}
     </Container>
   );
-}
+};
 
 // #232434
  
