@@ -106,16 +106,11 @@ const Image = styled.img`
   height: 70px;
   border-radius: 50%;
 
-
-  ${props => {
-    if(props.IsSelected === true) {
-      return "border: 2px solid rgba(255,0,0)"
+  ${(props) => {
+    if (props.selected === true) {
+      return 'opacity: 0.4';
     }
   }}
-
-  &:hover {
-    opacity: 0.4;
-  }
 
 `;
 
@@ -133,7 +128,7 @@ const CharacterSelection = ({characters, selectedId, onSelect, selectable, selec
       <Header>
         <Search placeholder="Search" />
         <Turn>
-          Your Turn
+          {selectable ? 'Pick a character' : 'Opponent is chosing a character'}
         </Turn>
 
         {selectable && (
@@ -149,11 +144,13 @@ const CharacterSelection = ({characters, selectedId, onSelect, selectable, selec
 
         {characters && characters.map((character, index) => (
           <Character key={character.id}>
-            <Image 
+            <Image
+              selected={character?.selected}
               src={character.avatar}
               onClick={() => {
-                if(selectedId === index) {
-                  onSelect("");
+                if (character.selected) return;
+                if (selectedId === index) {
+                  onSelect('');
                   return;
                 }
                 onSelect(index);

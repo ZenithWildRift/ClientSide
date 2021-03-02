@@ -34,7 +34,7 @@
   width: 100%;
   height: auto;
   /* background-color: #505380; */
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -45,6 +45,6 @@
 }
 
 .organisation_logo > img {
-  width: 50px;
+  width: 40px;
   margin: 20px;
 }

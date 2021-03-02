@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import './Styles/TimerNav.css'
@@ -62,9 +63,8 @@ ${props => {
 //     return "background-color: rgb(0, 161, 254, 0.5);"
 //   }
 // }}
-const TimerNav = ({match, bannedCharacters, completed}) => {
-  
-  console.log(match?.turn);
+const TimerNav = ({match, bannedCharacters, completed }) => {
+
   return (
     <header id="timer_nav">
       <main id="timer_central">

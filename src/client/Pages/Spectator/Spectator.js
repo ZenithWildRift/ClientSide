@@ -28,19 +28,30 @@ const Spectator = () => {
 
   useEffect(() => {
     axios.get(`/match/${id}`)
-    .then(response => {
-      setMatch(response.data.match);
-    });
+      .then((response) => {
+        setMatch(response.data.match);
+      });
   }, []);
-  
-  useEffect(()=> {
+
+  if (match) {
+    if (match.ready) {
+      console.log("bheja")
+      socket.emit('start_timer');
+    }
+  }
+
+  useEffect(() => {
     socket.emit("join", {match_id: id, team_id : teamId});
 
     socket.on("checkUpdate", match => setMatch(match));
 
+    socket.on('timer_count', data => {
+      console.log(data)
+    })
+
     return () => {
       socket.off("checkUpdate", match => setMatch(match))
-   };
+    };
   }, []);
 
   return ( 
@@ -67,16 +78,16 @@ const Spectator = () => {
           {/* Team Roaster */}
           <section className="roaster_section">
             <div className="team_roaster">
-              <img src="https://cdn.discordapp.com/attachments/813809372614361088/815649766733512724/Tribe_Logo.png" alt="" />
+              <img src={match?.teamA.image} alt="" />
             </div>
             <GrayBox>VS</GrayBox>
             <div className="team_roaster">
-              <img src="https://cdn.discordapp.com/attachments/813809372614361088/815648311176069120/image0.png" alt="" />
+              <img src={match?.teamB.image} alt="" />
             </div>
           </section>
 
           <div className="organisation_logo">
-            <img src="https://cdn.discordapp.com/attachments/813809372614361088/815643342418870272/image1.png" alt="" />
+            <img src="https://cdn.discordapp.com/attachments/813809372614361088/816153158820036638/image0.png" alt="" />
           </div>
 
         </div>
@@ -85,7 +96,7 @@ const Spectator = () => {
       </main>
       {/* Spectator Page Main Section */}
     </Container>
-   );
+  );
 }
 
 // #232434

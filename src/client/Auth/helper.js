@@ -1,6 +1,8 @@
+/* eslint-disable import/no-named-as-default */
 import io from 'socket.io-client';
+import URL from '../../../config';
 
-const SOCKET_URL = 'https://zenithwildrift.herokuapp.com';
+const SOCKET_URL = `${URL}`;
 
 export const socket = io(SOCKET_URL);
 
