@@ -183,11 +183,11 @@ const Dashboard = () => {
           <DialogTitle id="form-dialog-title">View Links</DialogTitle>
           <DialogContent>
             <LinkTitle>TEAM-A</LinkTitle>
-            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/team/00`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithleagues.com/match/${selectedId}/team/00`}</code></LinkBlock>
             <LinkTitle>TEAM-B</LinkTitle>
-            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/team/11`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithleagues.com/match/${selectedId}/team/11`}</code></LinkBlock>
             <LinkTitle>Spectator</LinkTitle>
-            <LinkBlock><code>{`https://zenithwildrift.web.app/match/${selectedId}/spectator`}</code></LinkBlock>
+            <LinkBlock><code>{`https://zenithleagues.com/match/${selectedId}/spectator`}</code></LinkBlock>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setToggle({ ...toggle, links: false})} color="primary">
