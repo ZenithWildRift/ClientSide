@@ -16,9 +16,9 @@ import SelectedCharacters from './SelectedCharacters';
 
 const TeamName = styled.div`
   margin: 0 auto;
-  width: fit-content;
+  width: 10px;
+  height: 40px;
   padding: 10px 20px;
-  background-color: white;
   display: flex;
   flex-direction: column;
 `;
@@ -59,7 +59,6 @@ const Team = () => {
   const [characters, setCharacters] = useState();
   const [match, setMatch] = useState();
   const [loading, setLoading] = useState(true);
-  const [preload, setPreload] = useState(0);
   const [selected, setSelected] = useState('');
   const [timer, setTimer] = useState('');
 
@@ -93,7 +92,7 @@ const Team = () => {
   }, [match]);
 
 
-  console.log(match);
+  console.log(timer);
   const checkCompleted = () => {
     const checkBanned = (match.bannedCharaters.teamA.length === 3) && (match.bannedCharaters.teamB.length === 3);
     const checkSelected = (match.selectedCharacters.teamA.length === 5) && (match.selectedCharacters.teamB.length === 5);
@@ -139,14 +138,14 @@ const Team = () => {
         bannedCharacters={match?.bannedCharaters}
       />
       <TeamName>
-        BoomBADAm
+        {/* BoomBADAm
         <span
           style={{
             width: '100%'
           }}
         >
           {`${timer || ''} sec`}
-        </span>
+        </span> */}
       </TeamName>
 
       <CharacterPanel>
@@ -162,6 +161,7 @@ const Team = () => {
 
       {match?.ready && (
         <CharacterSelection
+          completed={match?.selectedCharacters.teamA.length === 5}
           selectable={match.turn === teamId}
           characters={characters}
           selectedId={selected}

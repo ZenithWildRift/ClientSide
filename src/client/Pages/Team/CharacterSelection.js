@@ -121,15 +121,18 @@ const Name = styled.div`
   margin: 0 auto;
 `;
 
-const CharacterSelection = ({characters, selectedId, onSelect, selectable, selectCharacter}) => {
-
+const CharacterSelection = ({characters, completed, selectedId, onSelect, selectable, selectCharacter}) => {
+console.log(completed)
   return ( 
     <Container>
       <Header>
         <Search placeholder="Search" />
-        <Turn>
-          {selectable ? 'Pick a character' : 'Opponent is chosing a character'}
-        </Turn>
+        {!completed && (
+          <Turn>
+            {selectable ? 'Pick a character' : 'Opponent is chosing a character'}
+          </Turn>
+        )}
+
 
         {selectable && (
         <SelectPanel>
