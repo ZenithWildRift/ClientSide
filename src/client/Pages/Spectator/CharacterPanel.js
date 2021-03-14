@@ -39,13 +39,13 @@ const SidePanel = styled.div`
       if (props.template?.teamA) {
         return `background-color: ${props.template.teamA}`;
       }
-      return 'background-color: rgb(254,0,94,0.9)';
+      return 'background-color: rgb(0,161,254,1)';
     }
     if (props.position === 'right') {
       if (props.template?.teamB) {
         return `background-color: ${props.template.teamB}`;
       }
-      return 'background-color: rgb(0,161,254,1)';
+      return 'background-color: rgb(254,0,94,0.9)';
     }
 
   }}

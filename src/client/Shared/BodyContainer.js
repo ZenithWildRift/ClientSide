@@ -19,8 +19,12 @@ const Container = styled.div`
 `;
 
 const BodyContainer = ({children}) => {
+  const customBg = () => {
+    document.body.style.backgroundImage = 'url(https://cdn.discordapp.com/attachments/807644835883384833/820657144046157854/lol_wp.jpg)';
+  }
   return ( 
     <>
+      {customBg()}
       <BodyNavigation>
         <Link to="/"><NavButton mg="0px 10px 0px 0px">DashBoard</NavButton></Link>
         <Link to="/create"><NavButton mg="0px 10px 0px 0px">Create</NavButton></Link>

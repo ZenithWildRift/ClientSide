@@ -60,9 +60,11 @@ const Spectator = () => {
   const changeBG = () => {
     if (match?.template) {
       document.body.style.backgroundColor = match?.template?.background;
+    }
+    if (match?.template?.backgroundImage !== '') {
       document.body.style.backgroundImage = `url(${match?.template?.backgroundImage})`;
     }
-  }
+  };
 
   return (
     <div
@@ -111,7 +113,7 @@ const Spectator = () => {
             </section>
 
             <div className="organisation_logo">
-              <img src={match?.organisation.image} alt="" />
+              <img src={match?.organisation.image || 'https://cdn.discordapp.com/attachments/813809372614361088/816153158820036638/image0.png'} alt="" />
             </div>
           </div>
 

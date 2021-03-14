@@ -41,9 +41,9 @@ const TeamName = styled.div`
 
 ${(props) => {
     if (props.team === 'A') {
-      return `background-color:  ${props.template?.teamA ? props.template?.teamA : 'rgb(254, 0, 94, 1)'};`;
+      return `background-color:  ${props.template?.teamA ? props.template?.teamA : 'rgb(0, 161, 254, 1)'};`;
     } if (props.team === 'B') {
-      return `background-color:  ${props.template?.teamB ? props.template?.teamB : 'rgb(0, 161, 254, 1)'};`;
+      return `background-color:  ${props.template?.teamB ? props.template?.teamB : 'rgb(254, 0, 94, 1)'};`;
     }
   }}
 
