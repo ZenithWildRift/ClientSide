@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import './Styles/TimerNav.css'
+import './Styles/TimerNav.css';
 
 const BannedCharacters = styled.div`
     width: 40px;
@@ -19,40 +19,39 @@ const BannedCharacters = styled.div`
   background-size: cover;
   background-position: center;
 
-  ${props => {
-    if(!props.noBg) {
-      return "box-shadow: 0px 10px 20px rgb(0,0,0,0.5);"
-    } 
+  ${(props) => {
+    if (!props.noBg) {
+      return 'box-shadow: 0px 10px 20px rgb(0,0,0,0.5);';
+    }
   }}
 `;
 
 const TeamName = styled.div`
   height: 40px;
-  width: 300px;
+  width: auto;
   border-radius: 50px;
-  color: white;
+  padding: 0 50px;
+  color: ${props => (props.template?.textColor ? props.template?.textColor : 'white')};
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
 
 
 
-${props => {
-  if(props.team === "A"){
-    if(props.turn === "00" || props.completed) {
-      return "background-color: rgb(254, 0, 94, 0.9);"
-    } else {
-      return "background-color: rgb(254, 0, 94, 0.3);"
+${(props) => {
+    if (props.team === 'A') {
+      return `background-color:  ${props.template?.teamA ? props.template?.teamA : 'rgb(254, 0, 94, 1)'};`;
+    } if (props.team === 'B') {
+      return `background-color:  ${props.template?.teamB ? props.template?.teamB : 'rgb(0, 161, 254, 1)'};`;
     }
-  } else if(props.team === "B"){
-    if(props.turn === "11" || props.completed) {
-      return "background-color: rgb(0, 161, 254, 0.9);"
-    } else {
-      return "background-color: rgb(0, 161, 254, 0.3);"
-    }
+  }}
+
+
+@media (max-width: 800px) {
+    font-size: 0.8em;
+    padding: 0 30px;
   }
-}}
-
 
 `;
 
@@ -63,37 +62,43 @@ ${props => {
 //     return "background-color: rgb(0, 161, 254, 0.5);"
 //   }
 // }}
-const TimerNav = ({match, bannedCharacters, completed }) => {
-
+const TimerNav = ({
+  match, bannedCharacters, completed, template
+}) => {
+  const isTemplate = () => {
+    if (template.background && template.teamA && template.teamB) {
+      return template;
+    }
+  };
+  console.log(template || '');
   return (
     <header id="timer_nav">
       <main id="timer_central">
 
         <section className="timer_section">
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[0]?.avatar}/>
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[1]?.avatar}/>
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[2]?.avatar}/>
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[0]?.avatar} />
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[1]?.avatar} />
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[2]?.avatar} />
         </section>
 
         {/* Timer */}
         <section className="timer_section">
 
-          <TeamName team="B" turn={match?.turn} completed={completed}>{`Team ${match?.teamA?.name}`}</TeamName>
-          <BannedCharacters noBg={true} >V/S</BannedCharacters>
-          <TeamName team="A" turn={match?.turn} completed={completed}>{`Team ${match?.teamB?.name}`}</TeamName>
+          <TeamName team="A" template={template} turn={match?.turn} completed={completed}>{`Team ${match?.teamA?.name}`}</TeamName>
+          <BannedCharacters noBg>V/S</BannedCharacters>
+          <TeamName team="B" template={template} turn={match?.turn} completed={completed}>{`Team ${match?.teamB?.name}`}</TeamName>
 
         </section>
         {/* Timer */}
 
         <section className="timer_section">
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[2]?.avatar}/>
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[1]?.avatar}/>
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[0]?.avatar}/>
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[2]?.avatar} />
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[1]?.avatar} />
+          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[0]?.avatar} />
         </section>
 
       </main>
     </header>
   );
-}
- 
+};
 export default TimerNav;

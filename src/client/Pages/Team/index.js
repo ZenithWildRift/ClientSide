@@ -55,7 +55,7 @@ const checkTeam = (id) => {
   if (id === '11') return 'checkTeamB';
 };
 
-const Team = () => {
+export const Team = () => {
   const [characters, setCharacters] = useState();
   const [match, setMatch] = useState();
   const [loading, setLoading] = useState(true);
