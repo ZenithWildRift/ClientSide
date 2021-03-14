@@ -70,7 +70,7 @@ const TimerNav = ({
       return template;
     }
   };
-  console.log(template || '');
+
   return (
     <header id="timer_nav">
       <main id="timer_central">

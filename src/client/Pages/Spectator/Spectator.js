@@ -60,6 +60,7 @@ const Spectator = () => {
   const changeBG = () => {
     if (match?.template) {
       document.body.style.backgroundColor = match?.template?.background;
+      document.body.style.backgroundImage = `url(${match?.template?.backgroundImage})`;
     }
   }
 

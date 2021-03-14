@@ -14,7 +14,7 @@ import BodyContainer from '../../Shared/BodyContainer';
 import NavButton from '../../Shared/NavButton';
 import Navigation from '../../Shared/Navigation';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: 'yellow',
@@ -61,7 +61,7 @@ const Create = ({ history }) => {
   const handleForm = name => (e) => {
     e.preventDefault();
     setState({ ...state, [name]: e.target.value });
-    if (name === 'imageA' || name === 'imageB' || name === 'imageOrg') {
+    if (name === 'imageA' || name === 'imageB' || name === 'imageOrg' || name === 'backgroundImage') {
       form.set(`${name}`, e.target.files[0]);
     } else {
       form.set(`${name}`, e.target.value);
@@ -72,6 +72,7 @@ const Create = ({ history }) => {
     e.preventDefault();
     if (!theme) {
       form.delete('background');
+      form.delete('backgroundImage');
       form.delete('backgroundA');
       form.delete('backgroundB');
       form.delete('textColor');
@@ -103,6 +104,7 @@ const Create = ({ history }) => {
       <BodyContainer>
         <form
           style={{
+            width: '100%',
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -161,13 +163,21 @@ const Create = ({ history }) => {
             />
           </FormLabel>
 
-          {theme && (
+          {true && (
             <>
               <FormLabel>
                 Colour Background
                 <FormInput
                   value={state.background}
                   onChange={handleForm('background')}
+                />
+              </FormLabel>
+              <FormLabel>
+                Background Image (Ratio 16:9, Resolution 1600x900 Min)
+                <FormInput
+                  type="file"
+                  accept="image/*"
+                  onChange={handleForm('backgroundImage')}
                 />
               </FormLabel>
               <FormLabel>
@@ -191,6 +201,7 @@ const Create = ({ history }) => {
                   onChange={handleForm('selectionBox')}
                 />
               </FormLabel>
+
 
               <FormLabel>
                 Text Color (Only for team name)
