@@ -163,7 +163,7 @@ const Create = ({ history }) => {
             />
           </FormLabel>
 
-          {true && (
+          {theme && (
             <>
               <FormLabel>
                 Colour Background
