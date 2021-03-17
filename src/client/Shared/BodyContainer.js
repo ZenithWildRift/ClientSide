@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,7 +19,7 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const BodyContainer = ({children}) => {
+const BodyContainer = ({ children }) => {
   const customBg = () => {
     document.body.style.backgroundImage = 'url(https://cdn.discordapp.com/attachments/807644835883384833/820657144046157854/lol_wp.jpg)';
   }

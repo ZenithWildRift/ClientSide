@@ -5,8 +5,11 @@ import URL from '../../../config';
 
 export const token = () => {
   const jwt = JSON.parse(localStorage.getItem('jwt'));
-  return jwt.token;
-}
+  if (jwt) {
+    return jwt.token;
+  }
+  return false;
+};
 
 export const setHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
