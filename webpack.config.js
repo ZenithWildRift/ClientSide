@@ -1,6 +1,9 @@
+/* eslint-disable linebreak-style */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const webpack = require('webpack');
 
 const outputDirectory = 'dist';
 
@@ -52,5 +55,9 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/favicon.ico',
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    // new BundleAnalyzerPlugin()
   ],
 };
