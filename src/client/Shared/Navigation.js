@@ -12,6 +12,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items:center;
+  background-color: 'red';
 `;
 
 const Logo = styled.h1`

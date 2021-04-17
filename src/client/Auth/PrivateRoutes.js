@@ -5,12 +5,11 @@ import { isAuthenticated } from './helper';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const user = isAuthenticated() && jwtDecode(isAuthenticated().token);
-
+  const user = isAuthenticated() && jwtDecode(isAuthenticated());
     return (
       <Route
         {...rest}
-        render={props => (user.admin ? (
+        render={props => ((user.admin || user.staff) ? (
             <Component {...props} />// Bring components from routes
           ) : (
             <Redirect

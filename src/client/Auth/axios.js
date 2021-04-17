@@ -4,16 +4,16 @@ import axios from 'axios';
 import URL from '../../../config';
 
 export const token = () => {
-  const jwt = JSON.parse(localStorage.getItem('jwt'));
+  const jwt = localStorage.getItem('jwt');
   if (jwt) {
-    return jwt.token;
+    return jwt;
   }
-  return false;
 };
 
 export const setHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
 
 export const init = () => {
   // const baseURL = `${URL}/api`;

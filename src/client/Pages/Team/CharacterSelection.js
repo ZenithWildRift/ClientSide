@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -110,6 +111,7 @@ const Image = styled.img`
     if (props.selected === true) {
       return 'opacity: 0.4';
     }
+    return null;
   }}
 
 `;
@@ -121,55 +123,54 @@ const Name = styled.div`
   margin: 0 auto;
 `;
 
-const CharacterSelection = ({characters, completed, selectedId, onSelect, selectable, selectCharacter}) => {
-console.log(completed)
-  return ( 
-    <Container>
-      <Header>
-        <Search placeholder="Search" />
-        {!completed && (
-          <Turn>
-            {selectable ? 'Pick a character' : 'Opponent is chosing a character'}
-          </Turn>
-        )}
+const CharacterSelection = ({
+  characters, completed, selectedId, onSelect, selectable, selectCharacter
+}) => (
+  <Container>
+    <Header>
+      <Search placeholder="Search" />
+      {!completed && (
+      <Turn>
+        {selectable ? 'Pick a character' : 'Opponent is chosing a character'}
+      </Turn>
+      )}
 
 
-        {selectable && (
+      {selectable && (
         <SelectPanel>
           <SelectedCharacter>{characters && characters[selectedId] && `Selected : ${characters[selectedId]?.name}`}</SelectedCharacter>
           <SelectButton onClick={selectCharacter}>Select</SelectButton>
         </SelectPanel>
-        )}
+      )}
 
-      </Header>
+    </Header>
 
-      <Body>
+    <Body>
 
-        {characters && characters.map((character, index) => (
-          <Character key={character.id}>
-            <Image
-              selected={character?.selected}
-              src={character.avatar}
-              onClick={() => {
-                if (character.selected) return;
-                if (selectedId === index) {
-                  onSelect('');
-                  return;
-                }
-                onSelect(index);
-              }}
-              IsSelected={selectedId === index}
-              alt="Name"
-            />
-            <Name>{character.name}</Name>
-          </Character>
-        ))}
+      {characters && characters.map((character, index) => (
+        <Character key={character.id}>
+          <Image
+            selected={character?.selected}
+            src={character.avatar}
+            onClick={() => {
+              if (character.selected) return;
+              if (selectedId === index) {
+                onSelect('');
+                return;
+              }
+              onSelect(index);
+            }}
+            IsSelected={selectedId === index}
+            alt="Name"
+          />
+          <Name>{character.name}</Name>
+        </Character>
+      ))}
 
 
-      </Body>
-      
-    </Container>
-   );
-}
- 
+    </Body>
+
+  </Container>
+);
+
 export default CharacterSelection;

@@ -84,7 +84,6 @@ const Create = ({ history }) => {
         if (response.error) {
           console.log('something went wrong');
         }
-        console.log(response);
         setLoading(false);
         history.push('/');
       })
@@ -96,7 +95,7 @@ const Create = ({ history }) => {
   useEffect(() => {
     setState({ ...state, form: new FormData() });
   }, []);
-  console.log(state);
+
   return (
     <>
       <Navigation />

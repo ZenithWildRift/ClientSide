@@ -16,7 +16,7 @@ export const checkCompleted = (match) => {
 
 export const authenticate = (data, next) => {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('jwt', JSON.stringify(data));
+    localStorage.setItem('jwt', (data));
     next();
   }
 }
@@ -26,8 +26,7 @@ export const isAuthenticated = () => {
     return false;
   }
   if (localStorage.getItem('jwt')) {
-    return JSON.parse(localStorage.getItem('jwt'));
+    return localStorage.getItem('jwt');
   }
   return false;
 };
-

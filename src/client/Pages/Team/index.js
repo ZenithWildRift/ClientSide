@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 /* eslint-disable array-callback-return */
@@ -55,7 +56,7 @@ const checkTeam = (id) => {
   if (id === '11') return 'checkTeamB';
 };
 
-export const Team = () => {
+const Team = () => {
   const [characters, setCharacters] = useState();
   const [match, setMatch] = useState();
   const [loading, setLoading] = useState(true);
@@ -92,7 +93,6 @@ export const Team = () => {
   }, [match]);
 
 
-  console.log(timer);
   const checkCompleted = () => {
     const checkBanned = (match.bannedCharaters.teamA.length === 3) && (match.bannedCharaters.teamB.length === 3);
     const checkSelected = (match.selectedCharacters.teamA.length === 5) && (match.selectedCharacters.teamB.length === 5);
@@ -107,7 +107,7 @@ export const Team = () => {
     const temp = [...characters];
     temp[selected].selected = true;
     setCharacters(temp);
-    setSelected('');
+    setSelected(''); 
   };
 
   const readyTeam = () => {
@@ -119,7 +119,7 @@ export const Team = () => {
 
     socket.on('checkUpdate', match => setMatch(match));
 
-    socket.on('timer_count', data => setTimer(data.counter));
+    socket.on('timer_count', data => console.log(data));
 
     return () => {
       socket.off('checkUpdate', match => setMatch(match));
