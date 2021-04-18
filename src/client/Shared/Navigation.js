@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { Backdrop, Box, Button } from '@material-ui/core';
 import { isAuthenticated } from '../Auth/helper';
-import NavButton from './NavButton';
 
 const Nav = styled.nav`
   width: 960px;
@@ -11,8 +12,7 @@ const Nav = styled.nav`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items:center;
-  background-color: 'red';
+  align-items: center;
 `;
 
 const Logo = styled.h1`
@@ -28,7 +28,8 @@ const Navigation = ({ history }) => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('jwt');
 
-      axios.get('/user/signout')
+      axios
+        .get('/user/signout')
         .then(() => {
           console.log('Signout success');
           history.push('/login');
@@ -44,17 +45,13 @@ const Navigation = ({ history }) => {
       </div>
       <div>
         {!loggedIn && (
-        <>
-          <NavButton onClick={() => history.push('/signup')}>Signup</NavButton>
-          <NavButton onClick={() => history.push('/login')}>Login</NavButton>
-        </>
+          <>
+            <Button variant="outlined" style={{color: 'white', borderColor: 'white'}} onClick={() => history.push('/signup')}>Signup</Button>
+            <Button variant="contained" color="primary" onClick={() => history.push('/login')} style={{marginLeft: 10}}>Login</Button>
+          </>
         )}
-        {loggedIn && (
-        <NavButton onClick={() => logout()}>Logout</NavButton>
-        )}
+        {loggedIn && <Button variant="contained" color="primary" onClick={() => logout()}>Logout</Button>}
       </div>
-
-
     </Nav>
   );
 };

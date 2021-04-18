@@ -9,7 +9,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
   makeStyles,
   Paper,
   Table,
@@ -27,13 +26,13 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DeleteIcon from '@material-ui/icons/Delete';
+import jwtDecode from 'jwt-decode';
 import LinkIcon from '@material-ui/icons/Link';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import EditIcon from '@material-ui/icons/Edit';
 import Navigation from '../../Shared/Navigation';
 import BodyContainer from '../../Shared/BodyContainer';
 import { isAuthenticated } from '../../Auth/helper';
-import jwtDecode from 'jwt-decode';
 
 const styles = {
   tooltip: {

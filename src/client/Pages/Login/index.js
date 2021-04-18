@@ -45,15 +45,15 @@ const Login = () => {
     setLoading(true);
     axios.post('/user/signin', state)
       .then((response) => {
-        if (response.data.error) {
-          return console.log(response.data);
-        }
         setError('');
         authenticate(response.data, () => {
           setRedirect(true);
         });
       })
       .catch((err) => {
+        if (err.response.data.status === 500) {
+          localStorage.removeItem('jwt');
+        }
         setError(err.response.data.message);
         setLoading(false);
       });

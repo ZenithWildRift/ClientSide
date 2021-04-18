@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Tab, Tabs } from '@material-ui/core';
+import jwtDecode from 'jwt-decode';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { isAuthenticated } from '../Auth/helper';
 import NavButton from './NavButton';
 
 const BodyNavigation = styled.div`
@@ -25,6 +27,7 @@ const BodyContainer = ({ children }) => {
     document.body.style.backgroundImage = 'url(https://cdn.discordapp.com/attachments/807644835883384833/820657144046157854/lol_wp.jpg)';
   };
   const [tab, setTab] = useState(0);
+  const user = jwtDecode(isAuthenticated());
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
@@ -55,7 +58,9 @@ const BodyContainer = ({ children }) => {
         <Link to="/create"><NavButton mg="0px 10px 0px 0px">Create</NavButton></Link>
         <Link to="/themes"><NavButton mg="0px 10px 0px 0px">Themes</NavButton></Link>
         <Link to="/characters"><NavButton mg="0px 10px 0px 0px">Characters</NavButton></Link>
+        {user.admin && (
         <Link to="/admin"><NavButton mg="0px 10px 0px 0px">Admin</NavButton></Link>
+        )}
       </BodyNavigation>
       <Container>
         {children}
