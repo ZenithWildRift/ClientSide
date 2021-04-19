@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -16,7 +15,7 @@ const Container = styled.div`
 
 const Spectator = () => {
   const [match, setMatch] = useState();
-  const [timer, setTimer] = useState(false);
+  // const [timer, setTimer] = useState(false);
   const [initiate, setInitiate] = useState(false);
   const { id, teamId } = useParams();
 
@@ -41,12 +40,6 @@ const Spectator = () => {
     });
   }, []);
 
-  // if (match) {
-  //   if (match.ready) {
-  //     console.log('bheja');
-  //     socket.emit('start_timer');
-  //   }
-  // }
   useEffect(() => {
     if (match && match.ready) {
       if (!initiate) {
@@ -57,7 +50,6 @@ const Spectator = () => {
   }, [match]);
 
   useEffect(() => {
-
     socket.emit('join', { match_id: id, team_id: teamId });
 
     socket.on('checkUpdate', data => setMatch(data));
@@ -76,10 +68,11 @@ const Spectator = () => {
       document.body.style.backgroundColor = match?.template?.background;
     }
     if (match?.template?.backgroundImage !== '') {
-      document.body.style.backgroundImage = `url(${match?.template?.backgroundImage})`;
+      document.body.style.backgroundImage = `url(${match?.template?.backgroundImage.url})`;
     }
   };
 
+  console.log(match);
   return (
     <div
       style={{
@@ -118,18 +111,18 @@ const Spectator = () => {
             {/* Team Roaster */}
             <section className="roaster_section">
               <div className="team_roaster">
-                <img src={match?.teamA.image} alt="" />
+                <img src={match?.teamA.image.url} alt="" />
               </div>
               <GrayBox template={match?.template}>VS</GrayBox>
               <div className="team_roaster">
-                <img src={match?.teamB.image} alt="" />
+                <img src={match?.teamB.image.url} alt="" />
               </div>
             </section>
 
             <div className="organisation_logo">
               <img
                 src={
-                  match?.organisation.image
+                  match?.organisation.image.url
                   || 'https://cdn.discordapp.com/attachments/813809372614361088/816153158820036638/image0.png'
                 }
                 alt=""
@@ -148,7 +141,5 @@ const Spectator = () => {
     </div>
   );
 };
-
-// #232434
 
 export default Spectator;
