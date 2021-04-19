@@ -70,6 +70,7 @@ const Create = ({ history }) => {
 
   const createMatch = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!theme) {
       form.delete('background');
       form.delete('backgroundImage');

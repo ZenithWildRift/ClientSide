@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const NavButton = styled.button`
     cursor: pointer;
@@ -16,8 +16,9 @@ const NavButton = styled.button`
     color: white;
   }
 
-  ${props => {
-    if(props.border) return `border: 2px solid gray`
+  ${(props) => {
+    if (props.border) return 'border: 2px solid gray';
+    return null;
   }}
   
 `;
