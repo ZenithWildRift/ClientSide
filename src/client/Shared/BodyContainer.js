@@ -34,9 +34,11 @@ const BodyContainer = ({ children }) => {
         <Link to="/"><NavButton mg="0px 10px 0px 0px">DashBoard</NavButton></Link>
         <Link to="/create"><NavButton mg="0px 10px 0px 0px">Create</NavButton></Link>
         <Link to="/themes"><NavButton mg="0px 10px 0px 0px">Themes</NavButton></Link>
-        <Link to="/characters"><NavButton mg="0px 10px 0px 0px">Characters</NavButton></Link>
         {user.admin && (
-        <Link to="/admin"><NavButton mg="0px 10px 0px 0px">Admin</NavButton></Link>
+          <>
+            <Link to="/characters"><NavButton mg="0px 10px 0px 0px">Characters</NavButton></Link>
+            <Link to="/admin"><NavButton mg="0px 10px 0px 0px">Admin</NavButton></Link>
+          </>
         )}
       </BodyNavigation>
       <Container>

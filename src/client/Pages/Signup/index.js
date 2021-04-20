@@ -8,13 +8,10 @@ import {
   Typography,
   Divider,
   TextField,
-  Radio,
-  RadioGroup,
   Select,
   MenuItem,
   Button,
   LinearProgress,
-  CircularProgress,
 } from '@material-ui/core';
 import axios from 'axios';
 import React, { Fragment, useState } from 'react';
@@ -44,7 +41,6 @@ const Signup = ({ history }) => {
     username: '',
     password: '',
     organisation: '',
-    type: 'staff',
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({
@@ -107,21 +103,11 @@ const Signup = ({ history }) => {
         </Box>
 
         <Box className={classes.formBox}>
-          <Typography className={classes.formLabel}>Account Type</Typography>
-          <Select variant="outlined" fullWidth value={state.type} onChange={handleChange('type')}>
-            <MenuItem value="staff">Staff</MenuItem>
-            <MenuItem value="organisation">Organisation</MenuItem>
-          </Select>
+          <Typography className={classes.formLabel}>
+            Organisation Name
+          </Typography>
+          <TextField variant="outlined" size="small" fullWidth value={state.organisation} onChange={handleChange('organisation')} />
         </Box>
-
-        {state.type === 'organisation' && (
-          <Box className={classes.formBox}>
-            <Typography className={classes.formLabel}>
-              Organisation Name
-            </Typography>
-            <TextField variant="outlined" size="small" fullWidth value={state.organisation} onChange={handleChange('organisation')} />
-          </Box>
-        )}
 
         <Box className={classes.formBox}>
           <Typography color="primary" className={classes.formLabel}>

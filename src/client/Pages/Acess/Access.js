@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,11 +9,19 @@ import {
   List,
   ListItemText,
   ListItem,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
 } from '@material-ui/core';
 import BodyContainer from '../../Shared/BodyContainer';
 import Navigation from '../../Shared/Navigation';
 import AddAccessModal from '../../Components/AddAccessModal';
 import { addAccess, revokeAcess } from '../../Services/UserServices';
+import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
   heading: {
@@ -34,6 +42,7 @@ const useStyles = makeStyles(() => ({
 
 const Access = () => {
   const classes = useStyles();
+  const [organisations, setOrganisations ] = useState();
   const [modal, setModal] = useState({
     input: '',
     add: false,
@@ -65,7 +74,12 @@ const Access = () => {
   const handleValueChange = (input) => {
     setModal({ ...modal, input });
   };
-  console.log(modal.input);
+
+  useEffect(() => {
+    axios.get('/user/get-organisations').then((data) => {
+      setOrganisations(data.data);
+    })
+  }, []);
 
   return (
     <>
@@ -114,6 +128,39 @@ const Access = () => {
             </List>
           </Grid>
         </Grid>
+
+        <Typography color="primary" className={classes.heading} style={{ marginBottom: 10, marginTop: 10 }}>Organisations</Typography>
+        <Divider />
+
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">No.</TableCell>
+                <TableCell align="center">Organisation</TableCell>
+                <TableCell align="center">Email</TableCell>
+                <TableCell align="center">Username</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {organisations
+                && organisations.map((organisation, index) => (
+                  <TableRow key={organisation._id}>
+                    <TableCell align="center" scope="row">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell align="center" scope="row">
+                      {organisation.organisation_name}
+                    </TableCell>
+                    <TableCell align="center" scope="row">
+                      {organisation.email}
+                    </TableCell>
+                    <TableCell align="center">{organisation.username}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
         <AddAccessModal
           type="add"
