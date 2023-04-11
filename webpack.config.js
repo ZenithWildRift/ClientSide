@@ -2,10 +2,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
 
-const outputDirectory = 'dist';
+const crypto = require('crypto');
+
+// eslint-disable-next-line camelcase
+const crypto_orig_createHash = crypto.createHash;
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm === 'md4' ? 'sha256' : algorithm);
+const outputDirectory = 'build';
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],

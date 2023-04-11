@@ -76,9 +76,9 @@ const TimerNav = ({
       <main id="timer_central">
 
         <section className="timer_section">
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[0]?.avatar} />
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[1]?.avatar} />
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamA[2]?.avatar} />
+          {bannedCharacters && bannedCharacters.teamA.map(character => (
+            <BannedCharacters imageUrl={character.avatar} />
+          ))}
         </section>
 
         {/* Timer */}
@@ -92,9 +92,9 @@ const TimerNav = ({
         {/* Timer */}
 
         <section className="timer_section">
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[2]?.avatar} />
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[1]?.avatar} />
-          <BannedCharacters imageUrl={bannedCharacters && bannedCharacters.teamB[0]?.avatar} />
+          {bannedCharacters && bannedCharacters.teamB.map(character => (
+            <BannedCharacters imageUrl={character.avatar} />
+          ))}
         </section>
 
       </main>

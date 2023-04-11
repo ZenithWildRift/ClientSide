@@ -1,11 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-shadow */
-/* eslint-disable consistent-return */
-/* eslint-disable max-len */
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -107,7 +99,7 @@ const Team = () => {
     const temp = [...characters];
     temp[selected].selected = true;
     setCharacters(temp);
-    setSelected(''); 
+    setSelected('');
   };
 
   const readyTeam = () => {
@@ -159,7 +151,7 @@ const Team = () => {
 
       {/* Character Selection */}
 
-      {match?.ready && (
+      {match && match.ready && (
         <CharacterSelection
           completed={match?.selectedCharacters.teamA.length === 5}
           selectable={match.turn === teamId}

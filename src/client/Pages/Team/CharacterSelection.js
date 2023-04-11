@@ -98,7 +98,7 @@ const Character = styled.div`
   width: 50px;
   height: 70px;
   margin: 20px;
-  text-align: center;
+  text-align: -webkit-right;
 `;
 
 const Image = styled.img`
@@ -120,7 +120,7 @@ const Name = styled.div`
   color: white;
   width: 100%;
   font-size: 15px;
-  margin: 0 auto;
+  margin: 5px auto;
 `;
 
 const CharacterSelection = ({

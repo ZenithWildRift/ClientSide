@@ -261,15 +261,15 @@ const Dashboard = () => {
         <DialogContent>
           <LinkTitle>TEAM-A</LinkTitle>
           <LinkBlock>
-            <code>{`https://zenithleagues.com/match/${selectedId}/team/00`}</code>
+            <code>{`https://zenithwildrift-40c50.web.app/match/${selectedId}/team/00`}</code>
           </LinkBlock>
           <LinkTitle>TEAM-B</LinkTitle>
           <LinkBlock>
-            <code>{`https://zenithleagues.com/match/${selectedId}/team/11`}</code>
+            <code>{`https://zenithwildrift-40c50.web.app/match/${selectedId}/team/11`}</code>
           </LinkBlock>
           <LinkTitle>Spectator</LinkTitle>
           <LinkBlock>
-            <code>{`https://zenithleagues.com/match/${selectedId}/spectator`}</code>
+            <code>{`https://zenithwildrift-40c50.web.app/match/${selectedId}/spectator`}</code>
           </LinkBlock>
         </DialogContent>
         <DialogActions>
